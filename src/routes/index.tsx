@@ -13,9 +13,11 @@ import {
 import AuthedComponent from "routes/components/AuthedComponent"
 import UnauthedComponent from "routes/components/UnauthedComponent"
 import PublicComponent from "routes/components/PublicComponent"
+import { useSelector } from "react-redux"
+import { RootState } from "redux/store"
 
 const Routes = () => {
-  const token = "test"
+  const { data } = useSelector((state: RootState) => state.auth)
   return (
     <Router>
 			<WrapperRoutes>
@@ -24,7 +26,7 @@ const Routes = () => {
             <Route
               key={index.toString()}
               path={item.path}
-              element={(<AuthedComponent component={item.component} token={token} />)}
+              element={(<AuthedComponent component={item.component} token={data?.access_token} />)}
             />
           )
         })}
@@ -34,7 +36,7 @@ const Routes = () => {
             <Route
               key={index.toString()}
               path={item.path}
-              element={(<UnauthedComponent component={item.component} token={token} />)}
+              element={(<UnauthedComponent component={item.component} token={data?.access_token} />)}
             />
           )
         })}

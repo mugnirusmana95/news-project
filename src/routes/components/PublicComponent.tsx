@@ -1,5 +1,7 @@
 import PublicTemplate from "routes/template/PublicTemplate"
 import { useNavigate } from "react-router"
+import { useDispatch, useSelector } from "react-redux"
+import { RootDispatch, RootState } from "redux/store"
 
 interface Props {
   component: any
@@ -7,10 +9,12 @@ interface Props {
 
 const PublicComponent = ({ component: Component }: Props) => {
   const router = useNavigate()
+  const state = useSelector((state: RootState) => state)
+  const dispatch = useDispatch<RootDispatch>()
 
   return (
     <PublicTemplate>
-      <Component router={router} />
+      <Component router={router} state={state} dispatch={dispatch} />
     </PublicTemplate>
   )
 }

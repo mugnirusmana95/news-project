@@ -39,6 +39,10 @@
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
+    "rules": {
+      "react-hooks/rules-of-hooks": "error",
+      "react-hooks/exhaustive-deps": "off"
+    },
     "extends": [
       "react-app",
       "react-app/jest"
