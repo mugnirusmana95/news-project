@@ -93,7 +93,8 @@ export const signIn = (params: ParamsSignInType) => {
   return async (dispatch: Dispatch) => {
     dispatch(reducerLogin())
     let failed = false
-    setTimeout(() => {
+    if (params?.username !== "admin" && params?.password !== "admin") failed = true
+    const timeOut = setTimeout(() => {
       if (!failed) {
         let response = {
           data: {
@@ -104,6 +105,7 @@ export const signIn = (params: ParamsSignInType) => {
           }
         }
         localStorage.setItem('token', response?.data?.data?.access_token)
+        clearTimeout(timeOut)
         dispatch(reducerLoginSuccess(setSuccessAxios(response)))
       } else {
         let error = {
@@ -116,6 +118,7 @@ export const signIn = (params: ParamsSignInType) => {
             }
           }
         }
+        clearTimeout(timeOut)
         dispatch(reducerLoginFailed(setErrorAxios(error)))
       }
     }, 1500)
