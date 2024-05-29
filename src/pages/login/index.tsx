@@ -7,6 +7,8 @@ import { IoCall } from "@react-icons/all-files/io5/IoCall"
 
 import Input, { dataInputType } from "components/input"
 import Checkbox, { dataCheckboxType } from "components/checkbox"
+import Alert from "components/alert"
+import Button from "components/button"
 
 import { PageType } from "pages/PageType"
 import { defaultSignIn, signIn } from "redux/slices/auth-slices"
@@ -16,21 +18,36 @@ const Login = ({ router, state, dispatch }: PageType) => {
   const [username, setUsername] = useState<dataInputType>()
   const [password, setPassword] = useState<dataInputType>()
   const [rememberMe, setRememberMe] = useState<dataCheckboxType>()
+  const [errorAlert, setErrorAlert] = useState({
+    show: false,
+    title: '',
+    message: ''
+  })
 
   useEffect(() => {
     let {
       isLoading,
       isSuccess,
       isError,
-      isUnauthorized
+      isUnauthorized,
+      errorMessage
     } = auth
 
     if(!isLoading) {
       if(isError) {
         if(isUnauthorized) {
-         console.log('Auto logout cause token issue or get response 401')
+         setErrorAlert({
+          show: true,
+          title: 'Authorization',
+          message: errorMessage??''
+         })
          dispatch(defaultSignIn())
         } else {
+          setErrorAlert({
+            show: true,
+            title: 'Sign In',
+            message: errorMessage??''
+           })
           dispatch(defaultSignIn())
         }
       }
@@ -91,10 +108,13 @@ const Login = ({ router, state, dispatch }: PageType) => {
             onCheck={(data: dataCheckboxType) => setRememberMe(data)}
           />
 
-          <div
-            className="w-full flex items-center justify-center p-2 duration-300 bg-cyan-500 text-white rounded hover:shadow-sm-cst cursor-pointer"
+          <Button
+            isFull
+            disabled={!username?.value || username?.isError || !password?.value || password?.isError || auth?.isLoading}
+            label={auth?.isLoading ? "loading..." : "sign in"}
+            type="submit"
             onClick={() => dispatch(signIn({username: username?.value, password: password?.value}))}
-          >{auth?.isLoading ? 'LOADING...' : 'SIGN IN'}</div>
+          />
 
           <div className="w-full border-t border-t-gray-200 flex flex-col items-center pt-5 gap-2">
             <span>Or sign in with:</span>
@@ -129,6 +149,19 @@ const Login = ({ router, state, dispatch }: PageType) => {
 
         </div>
       </div>
+
+      <Alert
+        show={errorAlert.show}
+        type="warning"
+        title={errorAlert.title}
+        message={errorAlert.message}
+        onCancel={() => {
+          setErrorAlert({
+            ...errorAlert,
+            show: false,
+           })
+        }}
+      />
     </>
   )
 }

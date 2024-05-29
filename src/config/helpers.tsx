@@ -1,7 +1,7 @@
 export const setErrorAxios = (error: any) => {
   return {
-    message: error?.data?.meta?.message??'Oops something went wrong',
-    errorMeta: error?.data?.data??{}
+    message: error?.response?.data?.meta?.message??'Oops something went wrong',
+    errorMeta: error?.response?.data?.data??{}
   }
 }
 
