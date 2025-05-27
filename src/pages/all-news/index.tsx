@@ -51,10 +51,10 @@ const AllNews = ({ dispatch, state, router }: PageType) => {
     <div className="w-full h-full flex flex-col px-20 pt-10 pb-20 gap-10 text-gray-600 overflow-y-auto" onScroll={handleScroll}>
       <div className="w-full flex flex-row">
         <div className="w-full min-h-[30px] flex flex-row items-center gap-5 text-gray-800">
-          <span className="text-red-600 font-bold cursor-pointer" onClick={() => router('/')}>News App</span>
+          <span className="text-cyan-500 font-bold cursor-pointer" onClick={() => router('/')}>News App</span>
           <span>|</span>
           <span className={`cursor-pointer`} onClick={() => router('/news')}>Home</span>
-          <span className={`text-red-600 font-bold`}>All News</span>
+          <span className={`text-cyan-500 font-bold`}>All News</span>
         </div>
         <div className="w-fit flex flex-row items-center gap-5">
           <div className="w-[30px] h-[30px] rounded-full border-2 border-gray-600 items-center justify-center flex">
@@ -66,10 +66,10 @@ const AllNews = ({ dispatch, state, router }: PageType) => {
       <div className="w-full flex flex-col items-center justify-center p-5 rounded bg-gray-200 text-lg">
         <span className="mb-2">Welcome to News App</span>
         <div className="font-bold">
-          Craft narrative that ignite <span className="text-red-600">inspiration</span>,
+          Craft narrative that ignite <span className="text-cyan-500">inspiration</span>,
         </div>
         <div className="font-bold">
-          <span className="text-red-600">Knowledge</span>, and <span className="text-red-600">entertainment</span>
+          <span className="text-cyan-500">Knowledge</span>, and <span className="text-cyan-500">entertainment</span>
         </div>
       </div>
 
@@ -105,7 +105,7 @@ const AllNews = ({ dispatch, state, router }: PageType) => {
               </div>
               <div className="font-bold text-4xl text-black line-clamp-2 text-ellipsis">{item?.title}</div>
               <div className="text-xs line-clamp-2 text-ellipsis">{item?.content}</div>
-              <div className="text-red-600">{item?.author}</div>
+              <div className="text-cyan-500">{item?.author}</div>
             </div>
           </div>
         ))}

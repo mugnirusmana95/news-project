@@ -41,9 +41,9 @@ const News = ({ dispatch, state, router }: PageType) => {
     <div className="w-full h-full flex flex-col px-20 pt-10 pb-20 gap-10 text-gray-600">
       <div className="w-full flex flex-row">
         <div className="w-full min-h-[30px] flex flex-row items-center gap-5 text-gray-800">
-        <span className="text-red-600 font-bold cursor-pointer" onClick={() => router('/')}>News App</span>
+        <span className="text-cyan-500 font-bold cursor-pointer" onClick={() => router('/')}>News App</span>
           <span>|</span>
-          <span className={`text-red-600 font-bold`}>Home</span>
+          <span className={`text-cyan-500 font-bold`}>Home</span>
           <span className={`cursor-pointer`} onClick={() => router('/all-news')}>All News</span>
         </div>
         <div className="w-fit flex flex-row items-center gap-5">
@@ -56,10 +56,10 @@ const News = ({ dispatch, state, router }: PageType) => {
       <div className="w-full flex flex-col items-center justify-center p-5 rounded bg-gray-200 text-lg">
         <span className="mb-2">Welcome to News App</span>
         <div className="font-bold">
-          Craft narrative that ignite <span className="text-red-600">inspiration</span>,
+          Craft narrative that ignite <span className="text-cyan-500">inspiration</span>,
         </div>
         <div className="font-bold">
-          <span className="text-red-600">Knowledge</span>, and <span className="text-red-600">entertainment</span>
+          <span className="text-cyan-500">Knowledge</span>, and <span className="text-cyan-500">entertainment</span>
         </div>
       </div>
 
@@ -76,14 +76,14 @@ const News = ({ dispatch, state, router }: PageType) => {
           </div>
           <div className="font-bold text-4xl text-black">{newsHeader?.title}</div>
           <div className="text-xs">{newsHeader?.content}</div>
-          <div className="text-red-600">{newsHeader?.author}</div>
+          <div className="text-cyan-500">{newsHeader?.author}</div>
         </div>
       </div>
 
       <div className="w-full flex flex-col gap-3">
         <div className="w-full flex flex-row justify-between items-center">
           <div className="w-full font-bold text-2xl">Latest News</div>
-          <div className="w-full flex flex-row gap-2 text-red-600 justify-end cursor-pointer" onClick={() => router('/all-news')}>See All</div>
+          <div className="w-full flex flex-row gap-2 text-cyan-500 justify-end cursor-pointer" onClick={() => router('/all-news')}>See All</div>
         </div>
 
         <div className="w-full min-h-[450px] flex flex-row gap-5 overflow-x-auto overflow-y-hidden">
@@ -102,7 +102,7 @@ const News = ({ dispatch, state, router }: PageType) => {
                   </div>
                   <div className="font-bold text-xl text-black line-clamp-1 overflow-hidden text-ellipsis">{item?.title}</div>
                   <div className="text-xs text-justify line-clamp-5 overflow-hidden text-ellipsis">{item?.content}</div>
-                  <div className="text-red-600">{item.author}</div>
+                  <div className="text-cyan-500">{item.author}</div>
                 </div>
               )
             }
@@ -114,7 +114,7 @@ const News = ({ dispatch, state, router }: PageType) => {
       <div className="w-full flex flex-col gap-3">
         <div className="w-full flex flex-row justify-between items-center">
           <div className="w-full font-bold text-2xl">News Stories</div>
-          <div className="w-full flex flex-row gap-2 text-red-600 justify-end">See All</div>
+          <div className="w-full flex flex-row gap-2 text-cyan-500 justify-end">See All</div>
         </div>
 
         <div className="w-full flex flex-row gap-5 overflow-x-auto overflow-y-hidden min-h-[50px]">

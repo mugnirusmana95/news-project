@@ -23,7 +23,7 @@ const NewsDetail = ({ router, state }: PageType) => {
     <div className="w-full h-full flex flex-col px-20 pt-10 pb-20 gap-10 text-gray-600 overflow-y-auto">
       <div className="w-full flex flex-row">
         <div className="w-full min-h-[30px] flex flex-row items-center gap-5 text-gray-800">
-          <span className="text-red-600 font-bold cursor-pointer" onClick={() => router('/')}>News App</span>
+          <span className="text-cyan-500 font-bold cursor-pointer" onClick={() => router('/')}>News App</span>
           <span>|</span>
           <span className={`cursor-pointer`} onClick={() => router('/news')}>Home</span>
           <span className={`cursor-pointer`} onClick={() => router('/all-news')}>All News</span>
@@ -47,13 +47,13 @@ const NewsDetail = ({ router, state }: PageType) => {
               </div>
               <span>{dataDetail?.source?.name}</span>
               <span>|</span>
-              <span className="text-red-600">{dataDetail?.author}</span>
+              <span className="text-cyan-500">{dataDetail?.author}</span>
               <span>|</span>
               <span>{moment(dataDetail?.publishedAt).format('DD MMM YYYY')}</span>
             </div>
             <div className="font-bold text-4xl text-black line-clamp-2 text-ellipsis">{dataDetail?.title}</div>
-            <div className="text-xs pl-1 border-l-4 border-red-600">{dataDetail?.description}</div>
-            <div className="text-xs">{dataDetail?.content?.split(' … ')[0]} <a href={dataDetail.url} target="_blank" rel="noreferrer" className="text-red-600 cursor-pointer underline-none">Continue Reading...</a></div>
+            <div className="text-xs pl-1 border-l-4 border-cyan-500">{dataDetail?.description}</div>
+            <div className="text-xs">{dataDetail?.content?.split(' … ')[0]} <a href={dataDetail.url} target="_blank" rel="noreferrer" className="text-cyan-500 cursor-pointer underline-none">Continue Reading...</a></div>
           </div>
         </div>
       ) : (
