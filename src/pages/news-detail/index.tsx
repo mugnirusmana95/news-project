@@ -49,7 +49,7 @@ const NewsDetail = ({ router, state }: PageType) => {
               <span>|</span>
               <span className="text-cyan-500">{dataDetail?.author}</span>
               <span>|</span>
-              <span>{moment(dataDetail?.publishedAt).format('DD MMM YYYY')}</span>
+              <span>{moment(dataDetail?.publishedAt).format('DD MMM YYYY, HH:mm')}</span>
             </div>
             <div className="font-bold text-4xl text-black line-clamp-2 text-ellipsis">{dataDetail?.title}</div>
             <div className="text-xs pl-1 border-l-4 border-cyan-500">{dataDetail?.description}</div>

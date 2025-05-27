@@ -55,7 +55,7 @@ const Algorithm = ({ router }: PageType) => {
     setResultFirstQuestion(resultFirstQuestion)
   }
 
-  const handleSecondQuestion = () => {
+  const longest = () => {
     const result = secondQuestion?.value?.split(' ')
     let longestWord = ''
     result?.forEach((word: string) => {
@@ -101,7 +101,7 @@ const Algorithm = ({ router }: PageType) => {
         <span className="font-bold text-4xl text-cyan-500">Algorithm Section</span>
       </div>
 
-      <div className="w-full flex flex-col gap-5 border-[0.5px] border-gray-200 p-5 rounded shadow-cst">
+      <div className="w-full flex flex-col gap-5 border-[0.5px] border-gray-200 p-5 rounded hover:shadow-sm-cst duration-300">
         <span>1. Terdapat string "NEGIE1", silahkan reverse alphabet nya dengan angka tetap diakhir kata Hasil = "EIGEN1"</span>
         <Input
           placeholder="First Question"
@@ -135,11 +135,11 @@ const Algorithm = ({ router }: PageType) => {
         />
 
         <div className="w-full flex flex-row pl-2 border-l-4 border-cyan-500">
-          {resultFirstQuestion ?? '' }
+          {resultFirstQuestion ? resultFirstQuestion : '-' }
         </div>
       </div>
 
-      <div className="w-full flex flex-col gap-5 border-[0.5px] border-gray-200 p-5 rounded shadow-cst">
+      <div className="w-full flex flex-col gap-5 border-[0.5px] border-gray-200 p-5 rounded hover:shadow-sm-cst duration-300">
         <span>2. Diberikan contoh sebuah kalimat, silahkan cari kata terpanjang dari kalimat tersebut, jika ada kata dengan panjang yang sama silahkan ambil salah satu</span>
         <div className="w-full flex flex-col pl-2 border-l-4 border-cyan-500">
           <span>Contoh:</span>
@@ -175,15 +175,15 @@ const Algorithm = ({ router }: PageType) => {
           disabled={!secondQuestion?.value || secondQuestion?.isError}
           label="Check Result"
           type="submit"
-          onClick={handleSecondQuestion}
+          onClick={longest}
         />
 
         <div className="w-full flex flex-row pl-2 border-l-4 border-cyan-500">
-          {resultSecondQuestion ? `${resultSecondQuestion}: ${resultSecondQuestion?.length} character` : ''}
+          {resultSecondQuestion ? `${resultSecondQuestion}: ${resultSecondQuestion?.length} character` : '-'}
         </div>
       </div>
 
-      <div className="w-full flex flex-col gap-5 border-[0.5px] border-gray-200 p-5 rounded shadow-cst">
+      <div className="w-full flex flex-col gap-5 border-[0.5px] border-gray-200 p-5 rounded hover:shadow-sm-cst duration-300">
         <span>3. Terdapat dua buah array yaitu array INPUT dan array QUERY, silahkan tentukan berapa kali kata dalam QUERY terdapat pada array INPUT</span>
         <div className="w-full flex flex-col pl-2 border-l-4 border-cyan-500">
           <span>Contoh:</span>
@@ -247,11 +247,11 @@ const Algorithm = ({ router }: PageType) => {
         />
 
         <div className="w-full flex flex-row pl-2 border-l-4 border-cyan-500">
-          {resultThirdQuestion ? resultThirdQuestion : ''}
+          {resultThirdQuestion ? resultThirdQuestion : '-'}
         </div>
       </div>
 
-      <div className="w-full flex flex-col gap-5 border-[0.5px] border-gray-200 p-5 rounded shadow-cst">
+      <div className="w-full flex flex-col gap-5 border-[0.5px] border-gray-200 p-5 rounded hover:shadow-sm-cst duration-300">
         <span>4. Silahkan cari hasil dari pengurangan dari jumlah diagonal sebuah matrik NxN Contoh:</span>
         <div className="w-full flex flex-col pl-2 border-l-4 border-cyan-500">
           <span>Contoh:</span>
@@ -293,7 +293,7 @@ const Algorithm = ({ router }: PageType) => {
         />
 
         <div className="w-full flex flex-row pl-2 border-l-4 border-cyan-500">
-          {resultFourthQuestion ? resultFourthQuestion : ''}
+          {resultFourthQuestion ? resultFourthQuestion : '-'}
         </div>
       </div>
     </div>
