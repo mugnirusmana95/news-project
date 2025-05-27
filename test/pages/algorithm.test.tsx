@@ -28,7 +28,7 @@ describe('Algorithm Component', () => {
     const buttons = screen.getAllByTestId('button-component');
     
     expect(buttons.length).toBeGreaterThan(0);
-    
+
     if (buttons.length > 0) {
       fireEvent.click(buttons[0]);
     }

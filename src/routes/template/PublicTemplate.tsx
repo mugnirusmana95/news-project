@@ -6,7 +6,7 @@ interface TemplateType {
 
 const PublicTemplate = ({ children }: TemplateType) => {
   return (
-    <div className="w-screen h-screen text-xs">
+    <div className="w-fit h-fit text-xs">
       {children}
     </div>
   )

@@ -93,10 +93,10 @@ const Algorithm = ({ router }: PageType) => {
   }
 
   return (
-    <div className="w-full h-full flex flex-col px-20 pt-10 pb-20 gap-14 text-gray-600 overflow-y-auto">
-      <div className="w-full flex flex-row border-gray-600 items-center">
-        <AiOutlineArrowLeft className="font-bold text-4xl cursor-pointer" onClick={() => router('/')} />
-        <span className="font-bold text-4xl text-cyan-500">Algorithm Section</span>
+    <div className="w-screen h-full flex flex-col p-5 laptop:px-20 laptop:pt-10 laptop:pb-20 gap-14 text-gray-600 overflow-y-auto">
+      <div className="w-full flex flex-row border-gray-600 items-center gap-2">
+        <AiOutlineArrowLeft className="font-bold text-xl cursor-pointer" onClick={() => router('/')} />
+        <span className="font-bold text-xl text-cyan-500">Algorithm Section</span>
       </div>
 
       <div className="w-full flex flex-col gap-5 border-[0.5px] border-gray-200 p-5 rounded hover:shadow-sm-cst duration-300">
@@ -205,7 +205,7 @@ const Algorithm = ({ router }: PageType) => {
               },
               customMessage: {
                 required: "Third Question (INPUT) is required",
-                regex: `Third Question (INPUT) must following format ["alphanumber", "alphanumber", ...]`
+                regex: `Third Question (INPUT) must be following format ["alphanumber", "alphanumber", ...]`
               }
             }
           }
@@ -229,7 +229,7 @@ const Algorithm = ({ router }: PageType) => {
               },
               customMessage: {
                 required: "Third Question (QUERY) is required",
-                regex: `Third Question (QUERY) must following format ["alphanumber", "alphanumber", ...]`
+                regex: `Third Question (QUERY) must be following format ["alphanumber", "alphanumber", ...]`
               }
             }
           }
@@ -275,7 +275,7 @@ const Algorithm = ({ router }: PageType) => {
               },
               customMessage: {
                 required: "Input Matrix is required",
-                regex: "Input Matrix must be number and following format [[number, number, number], [number, number, number], [number, number, number]]"
+                regex: "Input Matrix must be following format [[number, number, number], [number, number, number], [number, number, number]]"
               }
             }
           }
