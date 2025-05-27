@@ -1,4 +1,4 @@
-import { Navigate } from "react-router-dom"
+import { Navigate, useParams } from "react-router-dom"
 import { useNavigate } from "react-router"
 
 import AuthedTemplate from "routes/template/AuthedTemplate"
@@ -17,11 +17,12 @@ const AuthedComponent = ({
   const router = useNavigate()
   const state = useSelector((state: RootState) => state)
   const dispatch = useDispatch<RootDispatch>()
+  const params = useParams()
 
   if (token) {
     return (
       <AuthedTemplate>
-        <Component router={router} state={state} dispatch={dispatch} />
+        <Component router={router} state={state} dispatch={dispatch} params={params} />
       </AuthedTemplate>
     )
   }

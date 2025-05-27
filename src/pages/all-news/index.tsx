@@ -51,13 +51,15 @@ const AllNews = ({ dispatch, state, router }: PageType) => {
     <div className="w-full h-full flex flex-col px-20 pt-10 pb-20 gap-10 text-gray-600 overflow-y-auto" onScroll={handleScroll}>
       <div className="w-full flex flex-row">
         <div className="w-full min-h-[30px] flex flex-row items-center gap-5 text-gray-800">
-          <span className="text-red-600 font-bold cursor-pointer" onClick={() => router('/')}>News</span>
+          <span className="text-red-600 font-bold cursor-pointer" onClick={() => router('/')}>News App</span>
           <span>|</span>
           <span className={`cursor-pointer`} onClick={() => router('/news')}>Home</span>
           <span className={`text-red-600 font-bold`}>All News</span>
         </div>
         <div className="w-fit flex flex-row items-center gap-5">
-          <div className="w-[30px] h-[30px] rounded-full bg-black"></div>
+          <div className="w-[30px] h-[30px] rounded-full border-2 border-gray-600 items-center justify-center flex">
+            <IoPerson />
+          </div>
         </div>
       </div>
 
@@ -90,7 +92,7 @@ const AllNews = ({ dispatch, state, router }: PageType) => {
 
       <div className="w-full flex flex-col h-fit gap-5">
         {news?.data?.map((item, index) => (
-          <div key={index} className="w-full flex flex-row gap-10 cursor-pointer">
+          <div key={index} className="w-full flex flex-row gap-10 cursor-pointer" onClick={() => router(`/all-news/${item?.id}`)}>
             <div className="w-full min-h-[250px] max-h-[250px] flex flex-row bg-black rounded-lg border-[0.5px] border-gray-100 p-[0.5px]">
               <img src={item?.urlToImage} alt="news" className="rounded-lg w-full h-full object-cover"/>
             </div>

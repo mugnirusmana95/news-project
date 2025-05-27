@@ -16,7 +16,7 @@ import ENV from "config/base-env"
 const persistConfig = {
   key: "root",
   storage,
-  whitelist: ['auth'],
+  whitelist: ['auth', 'news', 'newsDetail'],
 }
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)

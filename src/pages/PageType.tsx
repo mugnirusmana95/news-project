@@ -21,4 +21,5 @@ export interface PageType {
   router: NavigateFunction
   state: RootState
   dispatch: RootDispatch
+  params: any
 }

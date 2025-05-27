@@ -11,7 +11,6 @@ const PublicComponent = ({ component: Component }: Props) => {
   const router = useNavigate()
   const state = useSelector((state: RootState) => state)
   const dispatch = useDispatch<RootDispatch>()
-
   return (
     <PublicTemplate>
       <Component router={router} state={state} dispatch={dispatch} />
