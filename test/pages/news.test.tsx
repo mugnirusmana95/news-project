@@ -52,10 +52,8 @@ describe('News Component', () => {
   test('navigates to all news page when All News is clicked', () => {
     render(<News router={mockRouter} state={mockState} dispatch={mockDispatch} params={{}} />);
     
-    // Click on the All News link
     fireEvent.click(screen.getByText('All News'));
     
-    // Check if the router was called with the correct path
     expect(mockRouter).toHaveBeenCalledWith('/all-news');
   });
 
@@ -82,7 +80,6 @@ describe('News Component', () => {
     
     render(<News router={mockRouter} state={successState} dispatch={mockDispatch} params={{}} />);
     
-    // Check if news data is displayed
     await waitFor(() => {
       expect(screen.getByText('Test News Title')).toBeInTheDocument();
       expect(screen.getByText('Test News Content')).toBeInTheDocument();
@@ -103,7 +100,6 @@ describe('News Component', () => {
     
     render(<News router={mockRouter} state={errorState} dispatch={mockDispatch} params={{}} />);
     
-    // Check if error alert is displayed
     await waitFor(() => {
       expect(screen.getByText('Warning')).toBeInTheDocument();
       expect(screen.getByText('API Error')).toBeInTheDocument();
