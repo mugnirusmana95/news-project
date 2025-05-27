@@ -1,12 +1,5 @@
 import React from 'react';
 
-// Suppress console.log messages in tests
-const originalLog = console.log;
-console.log = function() {
-  // Do nothing to suppress logs during tests
-};
-
-// Mock the components that are causing issues in tests
 jest.mock('@react-icons/all-files/io5/IoPerson', () => ({
   IoPerson: () => <div data-testid="io-person-icon">IoPerson Icon</div>
 }));
@@ -15,7 +8,6 @@ jest.mock('@react-icons/all-files/ai/AiOutlineArrowLeft', () => ({
   AiOutlineArrowLeft: () => <div data-testid="arrow-left-icon">Arrow Left Icon</div>
 }));
 
-// Mock the Alert component
 jest.mock('../../src/components/alert', () => ({
   __esModule: true,
   default: ({ show, title, message, onClose }: any) => (
@@ -27,7 +19,6 @@ jest.mock('../../src/components/alert', () => ({
   )
 }));
 
-// Mock the Loader component
 jest.mock('../../src/components/loader', () => ({
   __esModule: true,
   default: ({ show }: any) => (
@@ -37,7 +28,6 @@ jest.mock('../../src/components/loader', () => ({
   )
 }));
 
-// Mock the Input component
 jest.mock('../../src/components/input', () => {
   const Input = ({ 
     value, 
@@ -76,7 +66,6 @@ jest.mock('../../src/components/input', () => {
   };
 });
 
-// Mock the Button component
 jest.mock('../../src/components/button', () => ({
   __esModule: true,
   default: ({ label, onClick, disabled }: any) => (
