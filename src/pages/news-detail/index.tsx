@@ -17,8 +17,6 @@ const NewsDetail = ({ router, state }: PageType) => {
     }
   }, [news])
 
-  console.log('dataDetail ', dataDetail?.content?.split(' … ')[0])
-
   return (
     <div className="w-full h-full flex flex-col px-20 pt-10 pb-20 gap-10 text-gray-600 overflow-y-auto">
       <div className="w-full flex flex-row">

@@ -67,8 +67,6 @@ const Algorithm = ({ router }: PageType) => {
   const handleThirdQuestion = () => {
     const dataInput = JSON.parse(input?.value??'[]')
     const dataQuery = JSON.parse(query?.value??'[]')
-    console.log('data input ', dataInput)
-    console.log('data query ', dataQuery)
     let result: number[] = []
     for (const dq of dataQuery) {
       let count = 0
