@@ -11,6 +11,7 @@ export interface newsSliceType {
 }
 
 export interface dataArticlesType {
+  id?: string
   source?: {
     id: string | null,
     name: string | null
@@ -25,6 +26,7 @@ export interface dataArticlesType {
 }
 
 interface SliceType {
+  page?: number
   data?: Array<dataArticlesType>
   isLoading?: boolean
   isError?: boolean
@@ -33,6 +35,7 @@ interface SliceType {
 }
 
 const initialState: SliceType = {
+  page: 1,
   data: [],
   isLoading: false,
   isError: false,
@@ -58,7 +61,8 @@ const slice = createSlice({
       state.isLoading = false
       state.isSuccess = true
       state.isError = false
-      state.data = payload?.payload
+      state.data = payload?.payload?.data
+      state.page = payload?.payload?.page
     },
     reducerNewsFailed: (state: SliceType, payload) => {
       state.isLoading = false
@@ -84,7 +88,10 @@ export const getNews = (params: newsSliceType) => {
       const response = await axios.get(`${ENV.NEWS_URL}/everything?page=${params.page}&pageSize=${params.pageSize}&apiKey=${ENV.NEWS_KEY}&q=${params.category}`)
       let data = state.news.data
       let newsData: Array<dataArticlesType> = []
-      let newArticles: Array<dataArticlesType> = response?.data?.articles
+      let newArticles: Array<dataArticlesType> = response?.data?.articles?.map((item: dataArticlesType) => {
+        item.id = item.title?.replaceAll(' ', '-').toLowerCase()
+        return item
+      })
       if (params.isCombine) {
         if (data && data?.length > 0) {
           newsData = [...data, ...newArticles]
@@ -94,9 +101,11 @@ export const getNews = (params: newsSliceType) => {
       } else {
         newsData = newArticles
       }
-      dispatch(reducerNewsSuccess(newsData))
+      dispatch(reducerNewsSuccess({
+        data: newsData,
+        page: params.page
+      }))
     } catch (error: any) {
-      console.log('error ', error?.response?.data?.message)
       dispatch(reducerNewsFailed(error?.response?.data?.message ?? error?.message))
     }
   }

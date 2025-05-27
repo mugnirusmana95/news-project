@@ -5,9 +5,8 @@ import { getNews, defaultNews, dataArticlesType } from "redux/slices/news-slices
 import Alert from "components/alert"
 import Loader from "components/loader"
 
-const News = ({ dispatch, state }: PageType) => {
+const News = ({ dispatch, state, router }: PageType) => {
   const { news } = state
-  const [activeClass, setActiveClass] = useState<string | null>()
   const [newsHeader, setNewsHeader] = useState<dataArticlesType>()
   const [errorAlert, setErrorAlert] = useState({
     show: false,
@@ -16,14 +15,8 @@ const News = ({ dispatch, state }: PageType) => {
   })
 
   useEffect(() => {
-    setActiveClass('all')
+    dispatch(getNews({ page: 1, pageSize: 10, category: 'all', isCombine: false }))
   }, [])
-
-  useEffect(() => {
-    if (activeClass) {
-      dispatch(getNews({ page: 1, pageSize: 10, category: activeClass, isCombine: false }))
-    }
-  }, [activeClass])
 
   useEffect(() => {
     if (news?.isSuccess || news?.isError) {
@@ -35,7 +28,6 @@ const News = ({ dispatch, state }: PageType) => {
       }
 
       if (news?.isError) {
-        console.log('news ', news)
         setErrorAlert({
           show: true,
           title: 'Warning',
@@ -49,17 +41,12 @@ const News = ({ dispatch, state }: PageType) => {
     <div className="w-full h-full flex flex-col px-20 pt-10 pb-20 gap-10 text-gray-600">
       <div className="w-full flex flex-row">
         <div className="w-full min-h-[30px] flex flex-row items-center gap-5 text-gray-800">
-          <span className="text-red-600 font-bold">News</span>
+        <span className="text-red-600 font-bold cursor-pointer" onClick={() => router('/')}>News</span>
           <span>|</span>
-          <span className={`${activeClass === 'all' ? 'text-red-600 font-bold' : 'cursor-pointer'}`} onClick={() => setActiveClass('all')}>Home</span>
-          <span className={`${activeClass === 'lifestyle' ? 'text-red-600 font-bold' : 'cursor-pointer'}`} onClick={() => setActiveClass('lifestyle')}>Lifestyle</span>
-          <span className={`${activeClass === 'business' ? 'text-red-600 font-bold' : 'cursor-pointer'}`} onClick={() => setActiveClass('business')}>Business</span>
-          <span className={`${activeClass === 'health' ? 'text-red-600 font-bold' : 'cursor-pointer'}`} onClick={() => setActiveClass('health')}>Health</span>
-          <span className={`${activeClass === 'sport' ? 'text-red-600 font-bold' : 'cursor-pointer'}`} onClick={() => setActiveClass('sport')}>Sport</span>
+          <span className={`text-red-600 font-bold`}>Home</span>
+          <span className={`cursor-pointer`} onClick={() => router('/all-news')}>All News</span>
         </div>
         <div className="w-fit flex flex-row items-center gap-5">
-          {/* <span>1</span> */}
-          {/* <span>2</span> */}
           <div className="w-[30px] h-[30px] rounded-full bg-black"></div>
         </div>
       </div>
@@ -94,7 +81,7 @@ const News = ({ dispatch, state }: PageType) => {
       <div className="w-full flex flex-col gap-3">
         <div className="w-full flex flex-row justify-between items-center">
           <div className="w-full font-bold text-2xl">Latest News</div>
-          <div className="w-full flex flex-row gap-2 text-red-600 justify-end">See All</div>
+          <div className="w-full flex flex-row gap-2 text-red-600 justify-end cursor-pointer" onClick={() => router('/all-news')}>See All</div>
         </div>
 
         <div className="w-full min-h-[450px] flex flex-row gap-5 overflow-x-auto overflow-y-hidden">
