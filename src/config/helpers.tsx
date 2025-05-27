@@ -8,3 +8,12 @@ export const setErrorAxios = (error: any) => {
 export const setSuccessAxios = (response: any) => {
   return response?.data?.data
 }
+
+export const slugify = (text: string) => {
+  return text
+    .toLowerCase()
+    .replace(/[^a-z0-9\s-]/g, '')
+    .replace(/\s+/g, '-')
+    .replace(/-+/g, '-')
+    .replace(/^-+|-+$/g, '') 
+}

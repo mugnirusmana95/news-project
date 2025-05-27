@@ -1,6 +1,7 @@
 import { Dispatch, createSlice } from "@reduxjs/toolkit"
 import axios from "axios"
 import ENV from "config/base-env"
+import { slugify } from "config/helpers"
 import { RootState } from "redux/store"
 
 export interface newsSliceType {
@@ -89,7 +90,7 @@ export const getNews = (params: newsSliceType) => {
       let data = state.news.data
       let newsData: Array<dataArticlesType> = []
       let newArticles: Array<dataArticlesType> = response?.data?.articles?.map((item: dataArticlesType) => {
-        item.id = item.title?.replaceAll(' ', '-').toLowerCase()
+        item.id = slugify(item.title)
         return item
       })
       if (params.isCombine) {
