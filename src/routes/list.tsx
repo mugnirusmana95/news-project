@@ -6,6 +6,7 @@ import Home from "pages/home"
 import News from "pages/news"
 import AllNews from "pages/all-news"
 import NewsDetail from "pages/news-detail"
+import Algorithm from "pages/algorithm"
 
 interface RootObjectType {
 	path?: string
@@ -44,6 +45,10 @@ const PublicRoute: RootType = [
   {
     path: '/all-news/:id',
     component: NewsDetail
+  },
+  {
+    path: '/algorithm',
+    component: Algorithm
   }
 ]
 

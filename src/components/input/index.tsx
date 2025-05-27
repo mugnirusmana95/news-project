@@ -135,6 +135,13 @@ const Input = ({
       }
     }
 
+    if (validate?.rules?.regex) {
+      if (!validate.rules.regex.test(val)) {
+        result.isError = true
+        result.message = validate?.customMessage?.regex ?? `${fieldName} is not valid`
+      }
+    }
+
     if (changeType === 'change') {
       if (onChange) onChange(result)
     } else if (changeType === 'clear') {
