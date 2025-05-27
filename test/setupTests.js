@@ -16,8 +16,11 @@ Object.defineProperty(window, 'matchMedia', {
 
 const originalError = console.error;
 console.error = function(message) {
-  if (message.includes('Warning: `ReactDOMTestUtils.act` is deprecated in favor of `React.act`') ||
-      message.includes('Warning: The current testing environment is not configured to support act')) {
+  // Check if message is a string before using includes
+  if (typeof message === 'string' && (
+      message.includes('Warning: `ReactDOMTestUtils.act` is deprecated in favor of `React.act`') ||
+      message.includes('Warning: The current testing environment is not configured to support act')
+    )) {
     return;
   }
   originalError.apply(console, arguments);

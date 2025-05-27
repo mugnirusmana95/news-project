@@ -8,7 +8,7 @@ jest.mock('@react-icons/all-files/ai/AiOutlineArrowLeft', () => ({
   AiOutlineArrowLeft: () => <div data-testid="arrow-left-icon">Arrow Left Icon</div>
 }));
 
-jest.mock('../../src/components/alert', () => ({
+jest.mock('components/alert', () => ({
   __esModule: true,
   default: ({ show, title, message, onClose }: any) => (
     <div data-testid="alert-component" data-show={show} data-title={title} data-message={message}>
@@ -19,7 +19,7 @@ jest.mock('../../src/components/alert', () => ({
   )
 }));
 
-jest.mock('../../src/components/loader', () => ({
+jest.mock('components/loader', () => ({
   __esModule: true,
   default: ({ show }: any) => (
     <div data-testid="loader-component" data-show={show}>
@@ -28,7 +28,7 @@ jest.mock('../../src/components/loader', () => ({
   )
 }));
 
-jest.mock('../../src/components/input', () => {
+jest.mock('components/input', () => {
   const Input = ({ 
     value, 
     onChange, 
@@ -66,7 +66,7 @@ jest.mock('../../src/components/input', () => {
   };
 });
 
-jest.mock('../../src/components/button', () => ({
+jest.mock('components/button', () => ({
   __esModule: true,
   default: ({ label, onClick, disabled }: any) => (
     <button 
