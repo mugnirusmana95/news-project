@@ -36,18 +36,18 @@ const Login = ({ router, state, dispatch }: PageType) => {
     if(!isLoading) {
       if(isError) {
         if(isUnauthorized) {
-         setErrorAlert({
-          show: true,
-          title: 'Authorization',
-          message: errorMessage??''
-         })
-         dispatch(defaultSignIn())
+          setErrorAlert({
+            show: true,
+            title: 'Authorization',
+            message: errorMessage??''
+          })
+          dispatch(defaultSignIn())
         } else {
           setErrorAlert({
             show: true,
             title: 'Sign In',
             message: errorMessage??''
-           })
+          })
           dispatch(defaultSignIn())
         }
       }
@@ -159,7 +159,7 @@ const Login = ({ router, state, dispatch }: PageType) => {
           setErrorAlert({
             ...errorAlert,
             show: false,
-           })
+          })
         }}
       />
     </>

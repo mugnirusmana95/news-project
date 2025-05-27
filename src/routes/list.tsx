@@ -3,6 +3,7 @@ import Dashboard from "pages/dashboard"
 import Login from "pages/login"
 
 import Home from "pages/home"
+import News from "pages/news"
 
 interface RootObjectType {
 	path?: string
@@ -29,6 +30,10 @@ const PublicRoute: RootType = [
   {
     path: '/',
     component: Home
+  },
+  {
+    path: '/news',
+    component: News
   }
 ]
 

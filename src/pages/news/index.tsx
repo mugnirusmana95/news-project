@@ -1,0 +1,159 @@
+import { PageType } from "pages/PageType"
+import { useEffect, useState } from "react"
+import { IoPerson } from "@react-icons/all-files/io5/IoPerson"
+import { getNews, defaultNews, dataArticlesType } from "redux/slices/news-slices"
+import Alert from "components/alert"
+import Loader from "components/loader"
+
+const News = ({ dispatch, state }: PageType) => {
+  const [activeClass, setActiveClass] = useState<string | null>()
+  const [dataNewsHeader, setDataNewsHeader] = useState<dataArticlesType>()
+  const { news } = state
+  const [errorAlert, setErrorAlert] = useState({
+    show: false,
+    title: '',
+    message: ''
+  })
+
+  useEffect(() => {
+    setActiveClass('all')
+  }, [])
+
+  useEffect(() => {
+    if (activeClass) {
+      dispatch(getNews({ page: 1, pageSize: 10, category: activeClass }))
+    }
+  }, [activeClass])
+
+  useEffect(() => {
+    if (news?.isSuccess || news?.isError) {
+      dispatch(defaultNews())
+
+      if (news?.isSuccess && news?.data) {
+        const firstData: dataArticlesType = news?.data[0]
+        setDataNewsHeader(firstData)
+      }
+
+      if (news?.isError) {
+        console.log('news ', news)
+        setErrorAlert({
+          show: true,
+          title: 'Warning',
+          message: news?.errorMessage ?? 'Something went wrong'
+        })
+      }
+    }
+  }, [news])
+
+  return (
+    <div className="w-full h-full flex flex-col px-20 pt-10 pb-20 gap-10 text-gray-600">
+      <div className="w-full flex flex-row">
+        <div className="w-full min-h-[30px] flex flex-row items-center gap-5 text-gray-800">
+          <span className="text-red-600 font-bold">News</span>
+          <span>|</span>
+          <span className={`${activeClass === 'all' ? 'text-red-600 font-bold' : 'cursor-pointer'}`} onClick={() => setActiveClass('all')}>Home</span>
+          <span className={`${activeClass === 'lifestyle' ? 'text-red-600 font-bold' : 'cursor-pointer'}`} onClick={() => setActiveClass('lifestyle')}>Lifestyle</span>
+          <span className={`${activeClass === 'business' ? 'text-red-600 font-bold' : 'cursor-pointer'}`} onClick={() => setActiveClass('business')}>Business</span>
+          <span className={`${activeClass === 'health' ? 'text-red-600 font-bold' : 'cursor-pointer'}`} onClick={() => setActiveClass('health')}>Health</span>
+          <span className={`${activeClass === 'sport' ? 'text-red-600 font-bold' : 'cursor-pointer'}`} onClick={() => setActiveClass('sport')}>Sport</span>
+        </div>
+        <div className="w-fit flex flex-row items-center gap-5">
+          {/* <span>1</span> */}
+          {/* <span>2</span> */}
+          <div className="w-[30px] h-[30px] rounded-full bg-black"></div>
+        </div>
+      </div>
+
+      <div className="w-full flex flex-col items-center justify-center p-5 rounded bg-gray-200 text-lg">
+        <span className="mb-2">Welcome to News App</span>
+        <div className="font-bold">
+          Craft narrative that ignite <span className="text-red-600">inspiration</span>,
+        </div>
+        <div className="font-bold">
+          <span className="text-red-600">Knowledge</span>, and <span className="text-red-600">entertainment</span>
+        </div>
+      </div>
+
+      <div className="w-full flex flex-row gap-10">
+        <div className="w-full min-h-[250px] max-h-[250px] flex flex-row bg-black rounded-lg border-[0.5px] border-gray-100 p-[0.5px]">
+          <img src={dataNewsHeader?.urlToImage} alt="news" className="rounded-lg w-full h-full object-cover"/>
+        </div>
+        <div className="w-full flex flex-col gap-4 justify-center">
+          <div className="w-full h-fit flex flex-row gap-3 items-center">
+            <div className="w-[30px] h-[30px] rounded-full border-2 border-gray-600 items-center justify-center flex">
+              <IoPerson />
+            </div>
+            <span>{dataNewsHeader?.source?.name}</span>
+          </div>
+          <div className="font-bold text-4xl text-black">{dataNewsHeader?.title}</div>
+          <div className="text-xs">{dataNewsHeader?.content}</div>
+          <div className="text-red-600">{dataNewsHeader?.author}</div>
+        </div>
+      </div>
+
+      <div className="w-full flex flex-col gap-3">
+        <div className="w-full flex flex-row justify-between items-center">
+          <div className="w-full font-bold text-2xl">Latest News</div>
+          <div className="w-full flex flex-row gap-2 text-red-600 justify-end">See All</div>
+        </div>
+
+        <div className="w-full min-h-[450px] flex flex-row gap-5 overflow-x-auto overflow-y-hidden">
+          {news?.data?.map((item, index) => {
+            if (index > 0) {
+              return (
+                <div key={index} className="w-1/5 flex-shrink-0 flex flex-col gap-4">
+                  <div className="w-full h-[200px] max-h-[200px] flex flex-row bg-black rounded-lg border-[0.5px] border-gray-100 p-[0.5px]">
+                    <img src={item?.urlToImage} alt="news" className="w-full h-full object-cover rounded-lg" />
+                  </div>
+                  <div className="w-full h-fit flex flex-row gap-3 items-center">
+                    <div className="w-[30px] h-[30px] rounded-full border-2 border-gray-600 items-center justify-center flex">
+                      <IoPerson />
+                    </div>
+                    <span>{item?.source?.name}</span>
+                  </div>
+                  <div className="font-bold text-xl text-black line-clamp-1 overflow-hidden text-ellipsis">{item?.title}</div>
+                  <div className="text-xs text-justify line-clamp-5 overflow-hidden text-ellipsis">{item?.content}</div>
+                  <div className="text-red-600">{item.author}</div>
+                </div>
+              )
+            }
+            return null
+          })}
+        </div>
+      </div>
+
+      <div className="w-full flex flex-col gap-3">
+        <div className="w-full flex flex-row justify-between items-center">
+          <div className="w-full font-bold text-2xl">News Stories</div>
+          <div className="w-full flex flex-row gap-2 text-red-600 justify-end">See All</div>
+        </div>
+
+        <div className="w-full flex flex-row gap-5 overflow-x-auto overflow-y-hidden min-h-[50px]">
+          {news?.data?.map((item, index) => (
+            <div key={index} className="w-[50px] h-[50px] flex-shrink-0 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full p-1">
+              <div className="w-full h-full rounded-full bg-white p-0.5">
+                <div className="w-full h-full rounded-full bg-black">
+                  <img src={item?.urlToImage} alt="news" className="w-full h-full object-cover rounded-full" />
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="w-full min-h-[50px]"></div>
+
+      <Alert
+        show={errorAlert.show}
+        title={errorAlert.title}
+        message={errorAlert.message}
+        type="warning"
+        onCancel={() => setErrorAlert({ show: false, title: '', message: '' })}
+      />
+
+      <Loader show={news?.isLoading} />
+    </div>
+  )
+}
+
+export default News
