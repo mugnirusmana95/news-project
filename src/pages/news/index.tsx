@@ -86,7 +86,7 @@ const News = ({ dispatch, state, router }: PageType) => {
           <div className="w-full flex flex-row gap-2 text-cyan-500 justify-end cursor-pointer" onClick={() => router('/all-news')}>See All</div>
         </div>
 
-        <div className="w-full min-h-[450px] flex flex-row gap-5 overflow-x-auto overflow-y-hidden">
+        <div className="w-full flex flex-row gap-5 overflow-x-auto overflow-y-hidden">
           {news?.data?.map((item, index) => {
             if (index > 0) {
               return (
