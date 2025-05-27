@@ -6,9 +6,9 @@ import Alert from "components/alert"
 import Loader from "components/loader"
 
 const News = ({ dispatch, state }: PageType) => {
-  const [activeClass, setActiveClass] = useState<string | null>()
-  const [dataNewsHeader, setDataNewsHeader] = useState<dataArticlesType>()
   const { news } = state
+  const [activeClass, setActiveClass] = useState<string | null>()
+  const [newsHeader, setNewsHeader] = useState<dataArticlesType>()
   const [errorAlert, setErrorAlert] = useState({
     show: false,
     title: '',
@@ -21,7 +21,7 @@ const News = ({ dispatch, state }: PageType) => {
 
   useEffect(() => {
     if (activeClass) {
-      dispatch(getNews({ page: 1, pageSize: 10, category: activeClass }))
+      dispatch(getNews({ page: 1, pageSize: 10, category: activeClass, isCombine: false }))
     }
   }, [activeClass])
 
@@ -31,7 +31,7 @@ const News = ({ dispatch, state }: PageType) => {
 
       if (news?.isSuccess && news?.data) {
         const firstData: dataArticlesType = news?.data[0]
-        setDataNewsHeader(firstData)
+        setNewsHeader(firstData)
       }
 
       if (news?.isError) {
@@ -76,18 +76,18 @@ const News = ({ dispatch, state }: PageType) => {
 
       <div className="w-full flex flex-row gap-10">
         <div className="w-full min-h-[250px] max-h-[250px] flex flex-row bg-black rounded-lg border-[0.5px] border-gray-100 p-[0.5px]">
-          <img src={dataNewsHeader?.urlToImage} alt="news" className="rounded-lg w-full h-full object-cover"/>
+          <img src={newsHeader?.urlToImage} alt="news" className="rounded-lg w-full h-full object-cover"/>
         </div>
         <div className="w-full flex flex-col gap-4 justify-center">
           <div className="w-full h-fit flex flex-row gap-3 items-center">
             <div className="w-[30px] h-[30px] rounded-full border-2 border-gray-600 items-center justify-center flex">
               <IoPerson />
             </div>
-            <span>{dataNewsHeader?.source?.name}</span>
+            <span>{newsHeader?.source?.name}</span>
           </div>
-          <div className="font-bold text-4xl text-black">{dataNewsHeader?.title}</div>
-          <div className="text-xs">{dataNewsHeader?.content}</div>
-          <div className="text-red-600">{dataNewsHeader?.author}</div>
+          <div className="font-bold text-4xl text-black">{newsHeader?.title}</div>
+          <div className="text-xs">{newsHeader?.content}</div>
+          <div className="text-red-600">{newsHeader?.author}</div>
         </div>
       </div>
 

@@ -46,7 +46,7 @@ const Alert = ({
   }
 
   return (
-    <div className={`w-screen h-screen fixed duration-300 left-0 ${show ? 'top-0' : 'top-[3000px]'} flex items-center justify-center backdrop-blur-md`}>
+    <div className={`w-screen h-screen fixed duration-300 top-0 ${show ? 'left-0' : 'left-[-3000px]'} flex items-center justify-center backdrop-blur-md`}>
       <div className="w-1/3 h-fit p-5 rounded bg-white shadow-cst flex flex-col gap-5 relative border border-gray-100">
         {renderType()}
         <span className="pl-20 font-bold text-justify">{title}</span>

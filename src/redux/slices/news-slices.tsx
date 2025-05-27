@@ -1,11 +1,13 @@
 import { Dispatch, createSlice } from "@reduxjs/toolkit"
 import axios from "axios"
 import ENV from "config/base-env"
+import { RootState } from "redux/store"
 
 export interface newsSliceType {
   page?: number
   pageSize?: number
   category?: string
+  isCombine?: boolean
 }
 
 export interface dataArticlesType {
@@ -75,12 +77,24 @@ export const {
 } = slice.actions
 
 export const getNews = (params: newsSliceType) => {
-  return async (dispatch: Dispatch) => {
+  return async (dispatch: Dispatch, getState: () => RootState) => {
+    const state = getState()
     dispatch(reducerNews())
     try {
       const response = await axios.get(`${ENV.NEWS_URL}/everything?page=${params.page}&pageSize=${params.pageSize}&apiKey=${ENV.NEWS_KEY}&q=${params.category}`)
-      const newArticles = response?.data?.articles
-      dispatch(reducerNewsSuccess(newArticles))
+      let data = state.news.data
+      let newsData: Array<dataArticlesType> = []
+      let newArticles: Array<dataArticlesType> = response?.data?.articles
+      if (params.isCombine) {
+        if (data && data?.length > 0) {
+          newsData = [...data, ...newArticles]
+        } else {
+          newsData = newArticles
+        }
+      } else {
+        newsData = newArticles
+      }
+      dispatch(reducerNewsSuccess(newsData))
     } catch (error: any) {
       console.log('error ', error?.response?.data?.message)
       dispatch(reducerNewsFailed(error?.response?.data?.message ?? error?.message))
