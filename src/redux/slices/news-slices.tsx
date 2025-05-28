@@ -86,7 +86,12 @@ export const getNews = (params: newsSliceType) => {
     const state = getState()
     dispatch(reducerNews())
     try {
-      const response = await axios.get(`${ENV.NEWS_URL}/everything?page=${params.page}&pageSize=${params.pageSize}&apiKey=${ENV.NEWS_KEY}&q=${params.category}`)
+      const response = await axios.get(`${ENV.NEWS_URL}/everything?page=${params.page}&pageSize=${params.pageSize}&apiKey=${ENV.NEWS_KEY}&q=${params.category}`, {
+        headers: {
+          "access-control-allow-origin": "*",
+          "Content-Type": "application/json",
+        }
+      })
       let data = state.news.data
       let newsData: Array<dataArticlesType> = []
       let newArticles: Array<dataArticlesType> = response?.data?.articles?.map((item: dataArticlesType) => {
