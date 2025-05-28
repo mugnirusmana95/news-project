@@ -9,6 +9,7 @@ import { persistStore } from "redux-persist"
 import store from "redux/store"
 import axios from 'axios'
 import { logoutTokenInvalid } from 'redux/slices/auth-slices'
+import 'antd/dist/reset.css'
 
 let persistor = persistStore(store)
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)

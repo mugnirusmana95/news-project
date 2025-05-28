@@ -53,8 +53,8 @@ const Home = ({ dispatch, state, router }: PageType) => {
       </div>
 
       <div className="w-full flex flex-col tablet:flex-row gap-5 cursor-pointer" onClick={() => router(`/all-news/${newsHeader?.id}`)}>
-        <div className="w-full min-h-[200px] max-h-[200px] laptop:min-h-[250px] laptop:max-h-[250px] flex flex-row bg-black rounded-lg border-[0.5px] border-gray-100 p-[0.5px]">
-          <img src={newsHeader?.urlToImage} alt="news" className="rounded-lg w-full h-full object-cover"/>
+        <div className="w-full min-h-[200px] max-h-[200px] laptop:min-h-[250px] laptop:max-h-[250px] flex flex-row rounded-lg border-[0.5px] border-gray-100 p-[0.5px]">
+          <img src={newsHeader?.urlToImage} alt="news" className="rounded-lg w-full h-full object-cover hover:scale-105 transition-all duration-300"/>
         </div>
         <div className="w-full flex flex-col gap-4 justify-center">
           <div className="w-full h-fit flex flex-row gap-3 items-center">
@@ -80,8 +80,8 @@ const Home = ({ dispatch, state, router }: PageType) => {
             if (index > 0) {
               return (
                 <div key={index} className="w-full laptop:w-1/5 flex-shrink-0 flex flex-col tablet:flex-row laptop:flex-col gap-5 cursor-pointer" onClick={() => router(`/all-news/${item?.id}`)}>
-                  <div className="w-full h-[200px] max-h-[200px] flex flex-row bg-black rounded-lg border-[0.5px] border-gray-100 p-[0.5px]">
-                    <img src={item?.urlToImage} alt="news" className="w-full h-full object-cover rounded-lg" />
+                  <div className="w-full h-[200px] max-h-[200px] flex flex-row rounded-lg border-[0.5px] border-gray-100 p-[0.5px]">
+                    <img src={item?.urlToImage} alt="news" className="w-full h-full object-cover rounded-lg hover:scale-105 transition-all duration-300" />
                   </div>
                   <div className="w-full flex flex-col gap-4 justify-center">
                     <div className="w-full h-fit flex flex-row gap-3 items-center">

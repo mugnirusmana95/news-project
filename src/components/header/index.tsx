@@ -1,7 +1,8 @@
 import { IoPerson } from "@react-icons/all-files/io5/IoPerson"
+import { NavigateFunction } from "pages/PageType"
 
 interface Types {
-  router?: any
+  router: NavigateFunction
   currentRouter?: string | null
 }
 

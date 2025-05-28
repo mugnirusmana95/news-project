@@ -16,6 +16,8 @@ import PublicComponent from "routes/components/PublicComponent"
 import { useSelector } from "react-redux"
 import { RootState } from "redux/store"
 
+import NotFound from "pages/404"
+
 const Routes = () => {
   const { data } = useSelector((state: RootState) => state.auth)
   return (
@@ -50,6 +52,8 @@ const Routes = () => {
             />
           )
         })}
+
+        <Route path="*" element={<NotFound />} />
       </WrapperRoutes>
     </Router>
   )

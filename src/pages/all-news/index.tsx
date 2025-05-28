@@ -82,8 +82,8 @@ const AllNews = ({ dispatch, state, router }: PageType) => {
       <div className="w-full flex flex-col h-fit gap-5">
         {news?.data?.map((item, index) => (
           <div key={index} className="w-full flex flex-col laptop:flex-row gap-10 cursor-pointer" onClick={() => router(`/all-news/${item?.id}`)}>
-            <div className="w-full min-h-[250px] max-h-[250px] flex flex-row bg-black rounded-lg border-[0.5px] border-gray-100 p-[0.5px]">
-              <img src={item?.urlToImage} alt="news" className="rounded-lg w-full h-full object-cover"/>
+            <div className="w-full min-h-[250px] max-h-[250px] flex flex-row rounded-lg border-[0.5px] border-gray-100 p-[0.5px]">
+              <img src={item?.urlToImage} alt="news" className="rounded-lg w-full h-full object-cover hover:scale-105 transition-all duration-300"/>
             </div>
             <div className="w-full flex flex-col gap-4 justify-center">
               <div className="w-full h-fit flex flex-row gap-3 items-center">

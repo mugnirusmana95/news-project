@@ -12,7 +12,7 @@ interface NavigateOptions {
   unstable_viewTransition?: boolean
 }
 
-interface NavigateFunction {
+export interface NavigateFunction {
   (to: To, options?: NavigateOptions): void
   (delta: number): void
 }

@@ -24,7 +24,7 @@ const NewsDetail = ({ router, state }: PageType) => {
 
       {dataDetail ? (
         <div className="w-full flex flex-col gap-10">
-          <div className="w-full min-h-[200px] max-h-[200px] tablet:min-h-[350px] tablet:max-h-[350px] flex flex-row bg-black rounded-lg border-[0.5px] border-gray-100 p-[0.5px]">
+          <div className="w-full min-h-[200px] max-h-[200px] tablet:min-h-[350px] tablet:max-h-[350px] flex flex-row rounded-lg border-[0.5px] border-gray-100 p-[0.5px]">
             <img src={dataDetail?.urlToImage} alt="news" className="rounded-lg w-full h-full object-cover" />
           </div>
           <div className="w-full flex flex-col gap-4">
