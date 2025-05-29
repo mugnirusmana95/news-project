@@ -24,8 +24,6 @@
     "framer-motion": "7.3.2",
     "history": "5.3.0",
     "http-proxy-middleware": "^3.0.5",
-    "identity-obj-proxy": "3.0.0",
-    "jest-environment-jsdom": "30.0.0-beta.3",
     "lodash": "4.17.21",
     "moment": "2.30.1",
     "msw": "2.8.4",
@@ -44,7 +42,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "jest --config ./test/jest.config.js",
+    "test": "jest",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -68,5 +66,14 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.27.2",
+    "@babel/preset-react": "^7.27.1",
+    "@babel/preset-typescript": "^7.27.1",
+    "camelcase": "^8.0.0",
+    "identity-obj-proxy": "3.0.0",
+    "jest-environment-jsdom": "27.5.1",
+    "jest-watch-typeahead": "^2.2.2"
   }
 }
