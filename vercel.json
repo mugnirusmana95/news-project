@@ -1,8 +1,23 @@
 {
+  "version": 2,
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "buildCommand": "npm run build",
+        "outputDirectory": "build"
+      }
+    }
+  ],
   "rewrites": [
     {
-      "source": "/api/:path*",
-      "destination": "${API_URL}/api/:path*"
+      "source": "/api/(.*)",
+      "destination": "https://proxy-2r5oafcrs-ade-mugni-rusmanas-projects-730222c4.vercel.app/$1"
+    },
+    {
+      "source": "/((?!api/).*)",
+      "destination": "/index.html"
     }
   ]
 }
