@@ -1,6 +1,5 @@
 import { Dispatch, createSlice } from "@reduxjs/toolkit"
 import axios from "axios"
-import ENV from "config/base-env"
 import { slugify } from "config/helpers"
 import { RootState } from "redux/store"
 
@@ -86,7 +85,7 @@ export const getNews = (params: newsSliceType) => {
     const state = getState()
     dispatch(reducerNews())
     try {
-      const response = await axios.get(`${ENV.NEWS_URL}/everything?page=${params.page}&pageSize=${params.pageSize}&apiKey=${ENV.NEWS_KEY}&q=${params.category}`)
+      const response = await axios.get(`api/proxy/everything?page=${params.page}&pageSize=${params.pageSize}&q=${params.category}`)
       let data = state.news.data
       let newsData: Array<dataArticlesType> = []
       let newArticles: Array<dataArticlesType> = response?.data?.articles?.map((item: dataArticlesType) => {
